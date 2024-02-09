@@ -1,0 +1,25 @@
+name: dashboard_new
+description: "Dashboard0902"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  charts_flutter: ^0.11.0
+  syncfusion_flutter_gauges: ^24.2.4
+
+dependency_overrides:
+  intl: ^0.18.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
