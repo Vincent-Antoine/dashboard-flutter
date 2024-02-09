@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'dart:math' as math;
 
 void main() {
   runApp(const MyApp());
@@ -33,9 +34,17 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              decoration: const BoxDecoration(
-                color: Color(0xFF303443),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical : 10.0),
+              decoration: BoxDecoration(
+                color: const Color(0xFF303443),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    spreadRadius: 1,
+                    blurRadius: 2,
+                    offset: const Offset(0, 1),
+                  ),
+                ],
               ),
               child: Row(
                 children: [
@@ -43,7 +52,7 @@ class MyHomePage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: Text(
-                        'Projets Dashboard',
+                        'Projects Dashboard',
                         style: Theme.of(context).textTheme.headline6?.copyWith(
                           color: const Color(0xFFFFFFFF),
                           fontWeight: FontWeight.bold,
@@ -51,43 +60,80 @@ class MyHomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Text(
+                  const SizedBox(width: 20),
+                  Text(
                     'Project Name',
-                    style: TextStyle(color: Color(0xFFFFFFFF)),
+                    style: TextStyle(
+                      color: Color(0xFFFFFFFF),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0), // Ajout du padding à l'intérieur
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 2,
+                          offset: const Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    child: DropdownButton<String>(
+                      style: const TextStyle(color: Color(0xFFFFFFFF)),
+                      value: 'Lorem A',
+                      items: const [
+                        DropdownMenuItem(value: 'Lorem A', child: Text('Lorem A')),
+                        DropdownMenuItem(value: 'Lorem B', child: Text('Lorem B')),
+                        DropdownMenuItem(value: 'Lorem C', child: Text('Lorem C')),
+                      ],
+                      onChanged: (value) {},
+                      dropdownColor: const Color(0xFF44485a),
+                      underline: Container(),
+                      icon: const Icon(Icons.arrow_drop_down, color: Color(0xFFFFFFFF)),
+                    ),
                   ),
                   const SizedBox(width: 30),
-                  DropdownButton<String>(
-                    style: const TextStyle(color: Color(0xFFFFFFFF)),
-                    value: 'Lorem A',
-                    items: const [
-                      DropdownMenuItem(value: 'Lorem A', child: Text('Lorem A')),
-                      DropdownMenuItem(value: 'Lorem B', child: Text('Lorem B')),
-                      DropdownMenuItem(value: 'Lorem C', child: Text('Lorem C')),
-                    ],
-                    onChanged: (value) {},
-                    dropdownColor: const Color(0xFF303443),
-                    icon: const Icon(Icons.arrow_drop_down, color: Color(0xFFFFFFFF)),
-                  ),
-                  const Text(
+                  Text(
                     'Project Name',
-                    style: TextStyle(color: Color(0xFFFFFFFF)),
+                    style: TextStyle(
+                      color: Color(0xFFFFFFFF),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  const SizedBox(width: 30),
-                  DropdownButton<String>(
-                    style: const TextStyle(color: Color(0xFFFFFFFF)),
-                    value: 'Lorem A',
-                    items: const [
-                      DropdownMenuItem(value: 'Lorem A', child: Text('Lorem A')),
-                      DropdownMenuItem(value: 'Lorem B', child: Text('Lorem B')),
-                      DropdownMenuItem(value: 'Lorem C', child: Text('Lorem C')),
-                    ],
-                    onChanged: (value) {},
-                    dropdownColor: const Color(0xFF303443),
-                    icon: const Icon(Icons.arrow_drop_down, color: Color(0xFFFFFFFF)),
+                  const SizedBox(width: 10),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0), // Ajout du padding à l'intérieur
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 2,
+                          offset: const Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    child: DropdownButton<String>(
+                      style: const TextStyle(color: Color(0xFFFFFFFF)),
+                      value: 'Lorem A',
+                      items: const [
+                        DropdownMenuItem(value: 'Lorem A', child: Text('Lorem A')),
+                        DropdownMenuItem(value: 'Lorem B', child: Text('Lorem B')),
+                        DropdownMenuItem(value: 'Lorem C', child: Text('Lorem C')),
+                      ],
+                      onChanged: (value) {},
+                      dropdownColor: const Color(0xFF44485a),
+                      underline: Container(),
+                      icon: const Icon(Icons.arrow_drop_down, color: Color(0xFFFFFFFF)),
+                    ),
                   ),
                 ],
               ),
             ),
+
             const SizedBox(height: 20),
             Expanded(
               child: Row(
@@ -110,7 +156,7 @@ class MyHomePage extends StatelessWidget {
                               const Padding(
                                 padding: EdgeInsets.only(top: 10.0),
                                 child: Text(
-                                  'Project Cost Performance',
+                                  'Performance coût du projet',
                                   style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -189,22 +235,22 @@ class MyHomePage extends StatelessWidget {
                                               startValue: 0,
                                               endValue: 50,
                                               color: Colors.green,
-                                              startWidth: 10,
-                                              endWidth: 10,
+                                              startWidth: 20,
+                                              endWidth: 20,
                                             ),
                                             GaugeRange(
                                               startValue: 50,
                                               endValue: 100,
                                               color: Colors.orange,
-                                              startWidth: 10,
-                                              endWidth: 10,
+                                              startWidth: 20,
+                                              endWidth: 20,
                                             ),
                                             GaugeRange(
                                               startValue: 100,
                                               endValue: 150,
                                               color: Colors.red,
-                                              startWidth: 10,
-                                              endWidth: 10,
+                                              startWidth: 20,
+                                              endWidth: 20,
                                             ),
                                           ],
                                           pointers: <GaugePointer>[
@@ -254,12 +300,12 @@ class MyHomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'Project Performance',
+                            'Performance du projet',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 24,
+                              fontSize: 18,
                             ),
                           ),
                           SizedBox(height: 20),
@@ -268,7 +314,7 @@ class MyHomePage extends StatelessWidget {
                             children: [
                               Column(
                                 children: [
-                                  Icon(Icons.arrow_downward, color: Colors.red),
+                                  Icon(Icons.arrow_circle_down_rounded, color: Colors.red, size: 38),
                                   SizedBox(height: 5),
                                   Text(
                                     '0.89',
@@ -287,7 +333,7 @@ class MyHomePage extends StatelessWidget {
                                           fontSize: 16,
                                         ),
                                       ),
-                                      SizedBox(height: 50), // Espace vertical de 5 pixels
+                                      SizedBox(height: 50),
                                       Text(
                                         '\$46,666.00',
                                         style: TextStyle(
@@ -310,7 +356,7 @@ class MyHomePage extends StatelessWidget {
                               ),
                               Column(
                                 children: [
-                                  Icon(Icons.arrow_upward, color: Colors.orange),
+                                  Icon(Icons.arrow_circle_up_rounded, color: Colors.orange, size: 38,),
                                   SizedBox(height: 5),
                                   Text(
                                     '0.87',
@@ -369,18 +415,18 @@ class MyHomePage extends StatelessWidget {
                         color: const Color(0xFF26282C),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: Column(
+                      child: const Column(
                         crossAxisAlignment: CrossAxisAlignment.center,                        children: [
                           Text(
-                            'Time Vs Project phase',
+                            'Temps Vs Phase du projet',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 24,
+                              fontSize: 18,
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           BarLabel(label: 'Closure Stage', value: 56, maxValue: 200),
                           BarLabel(label: 'Execution Stage', value: 164, maxValue: 200),
                           BarLabel(label: 'Monitor & Control', value: 36, maxValue: 200),
@@ -396,6 +442,18 @@ class MyHomePage extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: const Color(0xFF26282C),
                         borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Avancement des phases du projet',
+                            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 20),
+                          SimplePieChart(),
+                        ],
                       ),
                     ),
                   ),
@@ -423,18 +481,17 @@ class BarLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Calculate width of the bar based on the maximum value
     final double widthFactor = value / maxValue;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
           Expanded(
             flex: 3,
             child: Text(
               label,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
           Expanded(
@@ -465,11 +522,48 @@ class BarLabel extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8.0),
             child: Text(
               '$value',
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class SimplePieChartPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final List<double> slices = [0, 0.6, 0.3, 0.3]; // Les pourcentages pour chaque secteur
+    final List<Color> colors = [Colors.blue, const Color(0xFF604AFC), const Color(0xFF4BCE97), Colors.yellow]; // Les couleurs pour chaque secteur
+    double startRadian = -math.pi / 2;
+
+    for (int i = 0; i < slices.length; i++) {
+      final paint = Paint()
+        ..style = PaintingStyle.fill
+        ..color = colors[i];
+      final sweepRadian = slices[i] * 2 * math.pi;
+      canvas.drawArc(
+        Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: size.width / 2),
+        startRadian,
+        sweepRadian,
+        true,
+        paint,
+      );
+      startRadian += sweepRadian;
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+class SimplePieChart extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      size: const Size(200, 200),
+      painter: SimplePieChartPainter(),
     );
   }
 }
