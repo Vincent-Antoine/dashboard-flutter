@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Projects Dashboard',
+      title: 'Tableau de Bord Projets 2024',
       theme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xFF151922),
@@ -52,7 +52,7 @@ class MyHomePage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: Text(
-                        'Projects Dashboard',
+                        'Tableau de Bord Projets 2024',
                         style: Theme.of(context).textTheme.headline6?.copyWith(
                           color: const Color(0xFFFFFFFF),
                           fontWeight: FontWeight.bold,
@@ -61,49 +61,14 @@ class MyHomePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 20),
-                  Text(
-                    'Project Name',
+                  const Text(
+                    'Nom du projet',
                     style: TextStyle(
                       color: Color(0xFFFFFFFF),
                       fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0), // Ajout du padding à l'intérieur
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 2,
-                          offset: const Offset(0, 1),
-                        ),
-                      ],
-                    ),
-                    child: DropdownButton<String>(
-                      style: const TextStyle(color: Color(0xFFFFFFFF)),
-                      value: 'Lorem A',
-                      items: const [
-                        DropdownMenuItem(value: 'Lorem A', child: Text('Lorem A')),
-                        DropdownMenuItem(value: 'Lorem B', child: Text('Lorem B')),
-                        DropdownMenuItem(value: 'Lorem C', child: Text('Lorem C')),
-                      ],
-                      onChanged: (value) {},
-                      dropdownColor: const Color(0xFF44485a),
-                      underline: Container(),
-                      icon: const Icon(Icons.arrow_drop_down, color: Color(0xFFFFFFFF)),
                     ),
                   ),
                   const SizedBox(width: 30),
-                  Text(
-                    'Project Name',
-                    style: TextStyle(
-                      color: Color(0xFFFFFFFF),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0), // Ajout du padding à l'intérieur
                     decoration: BoxDecoration(
@@ -127,7 +92,48 @@ class MyHomePage extends StatelessWidget {
                       onChanged: (value) {},
                       dropdownColor: const Color(0xFF44485a),
                       underline: Container(),
-                      icon: const Icon(Icons.arrow_drop_down, color: Color(0xFFFFFFFF)),
+                      icon: const Padding( // Ajout de la marge à gauche pour l'icône
+                      padding: EdgeInsets.only(left: 40.0),
+                      child: Icon(Icons.arrow_drop_down, color: Color(0xFFFFFFFF)),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 80),
+                  const Text(
+                    'Phase du projet',
+                    style: TextStyle(
+                      color: Color(0xFFFFFFFF),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 30),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0), // Ajout du padding à l'intérieur
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 2,
+                          offset: const Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    child: DropdownButton<String>(
+                      style: const TextStyle(color: Color(0xFFFFFFFF)),
+                      value: 'Lorem A',
+                      items: const [
+                        DropdownMenuItem(value: 'Lorem A', child: Text('Lorem A')),
+                        DropdownMenuItem(value: 'Lorem B', child: Text('Lorem B')),
+                        DropdownMenuItem(value: 'Lorem C', child: Text('Lorem C')),
+                      ],
+                      onChanged: (value) {},
+                      dropdownColor: const Color(0xFF44485a),
+                      underline: Container(),
+                      icon: const Padding( // Ajout de la marge à gauche pour l'icône
+                        padding: EdgeInsets.only(left: 40.0),
+                        child: Icon(Icons.arrow_drop_down, color: Color(0xFFFFFFFF)),
+                        ),
                     ),
                   ),
                 ],
@@ -453,6 +459,15 @@ class MyHomePage extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           SimplePieChart(),
+                          const SizedBox(height: 20), // Ajoute un espace entre le graphique et les légendes
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              LegendItem(color: Color(0xFF604AFC), label: 'Phase 1'),
+                              LegendItem(color: Colors.yellow, label: 'Phase 2'),
+                              LegendItem(color: Color(0xFF4BCE97), label: 'Phase 3'),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -463,6 +478,39 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+
+class LegendItem extends StatelessWidget {
+  final Color color;
+  final String label;
+
+  const LegendItem({
+    Key? key,
+    required this.color,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        ClipOval(
+          child: Container(
+            width: 10, // Diamètre du cercle
+            height: 10, // Diamètre du cercle
+            color: color,
+          ),
+        ),
+        const SizedBox(width: 5),
+        Text(
+          label,
+          style: const TextStyle(color: Colors.white),
+        ),
+        const SizedBox(width: 50),
+      ],
     );
   }
 }
