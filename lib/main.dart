@@ -7,7 +7,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +35,8 @@ class MyHomePage extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical : 10.0),
-              decoration: BoxDecoration(
-                color: const Color(0xFF303443),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 1,
-                    blurRadius: 2,
-                    offset: const Offset(0, 1),
-                  ),
-                ],
+              decoration: const BoxDecoration(
+                color: Color(0xFF26282C),
               ),
               child: Row(
                 children: [
@@ -53,7 +45,7 @@ class MyHomePage extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 10.0),
                       child: Text(
                         'Tableau de Bord Projets 2024',
-                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: const Color(0xFFFFFFFF),
                           fontWeight: FontWeight.bold,
                         ),
@@ -68,16 +60,13 @@ class MyHomePage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(width: 30),
+                  const SizedBox(width: 20),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0), // Ajout du padding à l'intérieur
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    decoration: const BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 2,
-                          offset: const Offset(0, 1),
+                          color: Color(0xFF44485a)
                         ),
                       ],
                     ),
@@ -92,7 +81,7 @@ class MyHomePage extends StatelessWidget {
                       onChanged: (value) {},
                       dropdownColor: const Color(0xFF44485a),
                       underline: Container(),
-                      icon: const Padding( // Ajout de la marge à gauche pour l'icône
+                      icon: const Padding(
                       padding: EdgeInsets.only(left: 40.0),
                       child: Icon(Icons.arrow_drop_down, color: Color(0xFFFFFFFF)),
                       ),
@@ -106,16 +95,13 @@ class MyHomePage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(width: 30),
+                  const SizedBox(width: 20),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0), // Ajout du padding à l'intérieur
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    decoration: const BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 2,
-                          offset: const Offset(0, 1),
+                            color: Color(0xFF44485a)
                         ),
                       ],
                     ),
@@ -130,7 +116,7 @@ class MyHomePage extends StatelessWidget {
                       onChanged: (value) {},
                       dropdownColor: const Color(0xFF44485a),
                       underline: Container(),
-                      icon: const Padding( // Ajout de la marge à gauche pour l'icône
+                      icon: const Padding(
                         padding: EdgeInsets.only(left: 40.0),
                         child: Icon(Icons.arrow_drop_down, color: Color(0xFFFFFFFF)),
                         ),
@@ -271,13 +257,11 @@ class MyHomePage extends StatelessWidget {
                                               ),
                                             ),
                                           ],
-                                          annotations: <GaugeAnnotation>[
+                                          annotations: const <GaugeAnnotation>[
                                             GaugeAnnotation(
-                                              widget: Container(
-                                                child: const Text(
-                                                  '60K',
-                                                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
-                                                ),
+                                              widget: Text(
+                                                '60K',
+                                                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
                                               ),
                                               angle: 90,
                                               positionFactor: 0.5,
@@ -381,7 +365,7 @@ class MyHomePage extends StatelessWidget {
                                           fontSize: 16,
                                         ),
                                       ),
-                                      SizedBox(height: 50), // Espace vertical de 5 pixels
+                                      SizedBox(height: 50),
                                       Text(
                                         '\$41,579.40',
                                         style: TextStyle(
@@ -449,18 +433,18 @@ class MyHomePage extends StatelessWidget {
                         color: const Color(0xFF26282C),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: Column(
+                      child: const Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Text(
+                          Text(
                             'Avancement des phases du projet',
                             style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
                           ),
-                          const SizedBox(height: 20),
+                          SizedBox(height: 20),
                           SimplePieChart(),
-                          const SizedBox(height: 20), // Ajoute un espace entre le graphique et les légendes
-                          const Row(
+                          SizedBox(height: 20),
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               LegendItem(color: Color(0xFF604AFC), label: 'Phase 1'),
@@ -488,10 +472,10 @@ class LegendItem extends StatelessWidget {
   final String label;
 
   const LegendItem({
-    Key? key,
+    super.key,
     required this.color,
     required this.label,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -499,8 +483,8 @@ class LegendItem extends StatelessWidget {
       children: [
         ClipOval(
           child: Container(
-            width: 10, // Diamètre du cercle
-            height: 10, // Diamètre du cercle
+            width: 10,
+            height: 10,
             color: color,
           ),
         ),
@@ -521,11 +505,11 @@ class BarLabel extends StatelessWidget {
   final int maxValue;
 
   const BarLabel({
-    Key? key,
+    super.key,
     required this.label,
     required this.value,
     required this.maxValue,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -582,8 +566,8 @@ class BarLabel extends StatelessWidget {
 class SimplePieChartPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final List<double> slices = [0, 0.6, 0.3, 0.3]; // Les pourcentages pour chaque secteur
-    final List<Color> colors = [Colors.blue, const Color(0xFF604AFC), const Color(0xFF4BCE97), Colors.yellow]; // Les couleurs pour chaque secteur
+    final List<double> slices = [0.6, 0.3, 0.3];
+    final List<Color> colors = [const Color(0xFF604AFC), const Color(0xFF4BCE97), Colors.yellow];
     double startRadian = -math.pi / 2;
 
     for (int i = 0; i < slices.length; i++) {
@@ -607,6 +591,8 @@ class SimplePieChartPainter extends CustomPainter {
 }
 
 class SimplePieChart extends StatelessWidget {
+  const SimplePieChart({super.key});
+
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
